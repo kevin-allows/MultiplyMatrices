@@ -21,22 +21,17 @@ public class MultiplyMatrix {
         int matrixSize2 = count; //CORRECT!
         int rows2 = matrix2.length;
         int columns2 = count/matrix2.length;
-        int[][] multipliedMatrix = new int[columns2][rows1];
-        for (int s=0; s<multipliedMatrix.length; s++){
-            for (int c=0; c<multipliedMatrix.length; c++){
+        int[][] multipliedMatrix = new int[rows1][columns2];
+        int volumeOfMultipliedMatrix = columns2*rows1;
+        for (int s=0; s<rows1; s++){
+            for (int c=0; c<columns2; c++){
                 int value = 0;
-                for (int m=0; m<=matrix1[c].length; m++){
-                    for (int n=0; n<matrix2.length; n++){
-                        value = value + matrix1[m][n]*matrix2[n][m];
-                        System.out.println(value);
-                    }
+                for (int m=0; m<matrix2.length; m++){ // This variable always changes in the same way.
+                        value = value + matrix1[s][m]*matrix2[m][c];
                 }
-                multipliedMatrix[s][c] = value;
+                multipliedMatrix[s][c] = value; // Final value for the position [s][c].
             }
         }
-
-        // Put your code here
-
         return multipliedMatrix;
     }
 
@@ -46,14 +41,18 @@ public class MultiplyMatrix {
 
         // Get a result of your code
 
-        int[][] a = {
-                {1, 2, 3},
-                {4, 5, 6}};
-
-        int[][] b = {
-                {7, 8},
-                {9, 10},
-                {11, 12}};
+        int[][] a = {{30677, 22226, 98579, 29722, 99811, 75808, 69830},
+                {16451, 12335, 15446, 80587, 4606, 1001, 71816},
+                {13377, 8508, 9017, 14297, 9625, 35281, 84814},
+                {15583, 55032, 744, 43910, 17507, 11389, 33551},
+                {20736, 59730, 68865, 64273, 7336, 37991, 49340}};
+        int[][] b = {{5713, 1153, 78026, 42712, 874, 40184, 21640},
+                {11439, 39854, 48725, 29835, 40397, 42793, 96174},
+                {59566, 50707, 89470, 1940, 62491, 1522, 40563},
+                {12081, 79616, 6822, 1187, 7102, 97830, 19018},
+                {65133, 76778, 3676, 99025, 69500, 74207, 75421},
+                {85454, 28730, 87497, 18289, 10615, 99380, 52115},
+                {11595, 91888, 30874, 33217, 40897, 47383, 40570}};
 
         int[][] result = multiply(a, b);
         System.out.println(Arrays.deepToString(result).replace("],", "]\n"));
